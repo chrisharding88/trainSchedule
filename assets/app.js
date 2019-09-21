@@ -71,9 +71,16 @@ var currentTime = $('#time').html(moment().format('hh:mm'));
     console.log("ARRIVAL TIME: " + moment(nextTrainSchedule).format("hh:mm"));
 
 
+   var newTrainRow =  $("<tr>").append(`
+    <td>${trainName}</td>
+    <td>${trip}</td>
+    <td>${freq}</td>
+    <td>${nextTrainSchedule}</td>
+    <td>${minutesAway}</td>
+    `);
     
 
-
+    $(".table > #trainList").append(newTrainRow);
 
 
 
