@@ -8,14 +8,14 @@
 #time{
     text-align: center;
     border: 11px solid white;
-    font-size: 75px;
+    font-size: 85px;
     display: block;
-    width: 25%;
+    width: 24%;
     margin-left:70%;
     font-family: 'ds-digital';
     background: black;
     color:#c5cc04;
-    padding: 20px;
+    padding: 5px;
     font-weight: 600;
 }
 
@@ -30,4 +30,11 @@
 
 .jumbotron{
     background-color: black;
+}
+
+
+
+
+tbody{
+    font-family: 'Roboto Mono', monospace;
 }
