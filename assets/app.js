@@ -67,7 +67,7 @@ var currentTime = $('#time').html(moment().format('hh:mm'));
     console.log("MINUTES TILL TRAIN: " + minutesAway);
 
     // Next Train
-    var nextTrainSchedule = moment().add(minutesAway, "minutes");
+    var nextTrainSchedule = moment().add(minutesAway, "minutes").format('hh:mm');
     console.log("ARRIVAL TIME: " + moment(nextTrainSchedule).format("hh:mm"));
 
 
