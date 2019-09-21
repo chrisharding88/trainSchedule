@@ -13,12 +13,14 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
   //Set up a variable for the database
-    var database = firebase.database();
+    var database = firebase.database().ref();
+
+//Displays current time in the DOM
+var currentTime = $('#time').html(moment().format('hh:mm'));
 
 
  // Whenever the submit button is pushed it stores at the firebase 
  // Also it displays in the DOM
- 
  $('#submit').click(function(){
      var name = "";
      var destination = "";
@@ -30,7 +32,7 @@ var firebaseConfig = {
      trainTime = $('#trainTime').val().trim();
      frequency= $('#frequency').val().trim();
 
-     database.ref().push({
+     database.push({
         name: name,
         destination: destination,
         trainTime: trainTime,
@@ -38,3 +40,46 @@ var firebaseConfig = {
      });      
 
  });
+
+ database.on("child_added", function(childSnapshot){
+    var trainName = childSnapshot.val().name;
+    var trip = childSnapshot.val().destination;
+    var timeOfTrip = childSnapshot.val().trainTime;
+    var freq = childSnapshot.val().frequency;
+
+
+    console.log(trainName);
+    console.log(trip);
+    console.log(timeOfTrip);
+    console.log(freq);
+
+    var trainTimeConverted = moment(timeOfTrip, "HH:mm").subtract(1, "years");
+
+    var timeDifference = moment().diff(moment(trainTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + timeDifference);
+
+    // Time apart (remainder)
+    var timeRemainder = timeDifference % freq;
+    console.log(timeRemainder);
+
+    // Minute Until Train
+    var minutesAway = freq - timeRemainder;
+    console.log("MINUTES TILL TRAIN: " + minutesAway);
+
+    // Next Train
+    var nextTrainSchedule = moment().add(minutesAway, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextTrainSchedule).format("hh:mm"));
+
+
+    
+
+
+
+
+
+
+ }, function(errorObject){
+     console.log('Errors Handled: ' + errorObject.code);
+ });
+
+ 
