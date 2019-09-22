@@ -17,6 +17,7 @@ var firebaseConfig = {
 
 //Displays current time in the DOM
 var currentTime = $('#time').html(moment().format('hh:mm'));
+console.log(moment().format('hh:mm:ss'))
 
 
  // Whenever the submit button is pushed it stores at the firebase 
@@ -32,6 +33,7 @@ var currentTime = $('#time').html(moment().format('hh:mm'));
      trainTime = $('#trainTime').val().trim();
      frequency= $('#frequency').val().trim();
 
+     // Push it to the database storage
      database.push({
         name: name,
         destination: destination,
@@ -43,13 +45,13 @@ var currentTime = $('#time').html(moment().format('hh:mm'));
 
  database.on("child_added", function(childSnapshot){
     var trainName = childSnapshot.val().name;
-    var trip = childSnapshot.val().destination;
+    var dest = childSnapshot.val().destination;
     var timeOfTrip = childSnapshot.val().trainTime;
     var freq = childSnapshot.val().frequency;
 
 
     console.log(trainName);
-    console.log(trip);
+    console.log(dest);
     console.log(timeOfTrip);
     console.log(freq);
 
@@ -73,7 +75,7 @@ var currentTime = $('#time').html(moment().format('hh:mm'));
 
    var newTrainRow =  $("<tr>").append(`
     <td>${trainName}</td>
-    <td>${trip}</td>
+    <td>${dest}</td>
     <td>${freq}</td>
     <td>${nextTrainSchedule}</td>
     <td>${minutesAway}</td>
@@ -81,6 +83,7 @@ var currentTime = $('#time').html(moment().format('hh:mm'));
     
 
     $(".table > #trainList").append(newTrainRow);
+
 
 
 

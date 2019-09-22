@@ -32,9 +32,39 @@
     background-color: black;
 }
 
+.trainHeader{
+    background-color: black;
+    color:white
+}
 
+.train-form{
+    border: 4px solid black;
+}
+
+.trainTable{
+    background-color: black;
+}
+
+thead{
+    color: white;
+}
+
+.table td{
+    border-top-color: #f5cd05;
+}
+
+.table thead th{
+    border-top-color: #f5cd05;
+    border-bottom-color: #f5cd05;
+}
 
 
 tbody{
     font-family: 'Roboto Mono', monospace;
+    color: white;
+
+}
+
+.train-form{
+    margin-top: 30px;
 }
