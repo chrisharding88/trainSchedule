@@ -16,8 +16,18 @@ var firebaseConfig = {
     var database = firebase.database().ref();
 
 //Displays current time in the DOM
-var currentTime = $('#time').html(moment().format('hh:mm'));
-console.log(moment().format('hh:mm:ss'))
+var currentTime = $('#time');
+
+//Updates the current time displayed in the html
+function timeUpdate() {
+    const now = moment();
+    const readableTime = now.format('hh:mm');
+
+    currentTime.html(readableTime);
+}
+
+//Updates the time in 1 second
+setInterval (timeUpdate, 1000);
 
 
  // Whenever the submit button is pushed it stores at the firebase 
@@ -71,7 +81,6 @@ console.log(moment().format('hh:mm:ss'))
     // Next Train
     var nextTrainSchedule = moment().add(minutesAway, "minutes").format('hh:mm');
     console.log("ARRIVAL TIME: " + moment(nextTrainSchedule).format("hh:mm"));
-
 
    var newTrainRow =  $("<tr>").append(`
     <td>${trainName}</td>
