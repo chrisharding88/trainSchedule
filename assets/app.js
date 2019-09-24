@@ -38,6 +38,9 @@ setInterval (timeUpdate, 1000);
      var trainTime = "";
      var frequency = "";
 
+
+    // Grabbed the values from the input boxes 
+    // so it can display into the DOM
      name = $('#trainName').val().trim();
      destination = $('#destination').val().trim();
      trainTime = $('#trainTime').val().trim();
@@ -54,6 +57,8 @@ setInterval (timeUpdate, 1000);
  });
 
  database.on("child_added", function(childSnapshot){
+     
+    // Storing the childSnapshot.val() into variables for convenience
     var trainName = childSnapshot.val().name;
     var dest = childSnapshot.val().destination;
     var timeOfTrip = childSnapshot.val().trainTime;
@@ -79,8 +84,8 @@ setInterval (timeUpdate, 1000);
     console.log("MINUTES TILL TRAIN: " + minutesAway);
 
     // Next Train
-    var nextTrainSchedule = moment().add(minutesAway, "minutes").format('hh:mm');
-    console.log("ARRIVAL TIME: " + moment(nextTrainSchedule).format("hh:mm"));
+    var nextTrainSchedule = moment().add(minutesAway, "minutes").format('hh:mm A');
+    console.log("ARRIVAL TIME: " + moment(nextTrainSchedule).format("hh:mm A"));
 
    var newTrainRow =  $("<tr>").append(`
     <td>${trainName}</td>
